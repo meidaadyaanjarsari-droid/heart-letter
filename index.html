@@ -1,0 +1,175 @@
+!DOCTYPE <html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>One Things Message</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+background:linear-gradient(135deg,#e6e9ff,#f3e8ff,#ffeef5);
+text-align:center;
+}
+
+/* WELCOME */
+#welcome{
+position:fixed;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:#2c687d;
+color:white;
+z-index:10;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:white;
+color:#43abd7;
+cursor:pointer;
+}
+
+/* HEART */
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
+opacity:0.6;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+/* LETTER (UPDATED) */
+#letter{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:white;
+padding:25px;
+border-radius:20px;
+width:360px;
+height:420px; /* supaya bisa scroll */
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+transition:1s;
+overflow-y:auto; /* SCROLL */
+text-align:left; /* RATA KIRI */
+line-height:1.6;
+font-size:14px;
+}
+
+/* SCROLLBAR */
+#letter::-webkit-scrollbar{
+width:6px;
+}
+#letter::-webkit-scrollbar-thumb{
+background:#ccc;
+border-radius:10px;
+}
+
+#letter.show{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.paper{
+animation:fly 2s ease forwards;
+}
+
+@keyframes fly{
+0%{transform:translateY(200px) rotate(10deg);}
+100%{transform:translateY(0) rotate(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- WELCOME -->
+<div id="welcome">
+<h2>Welcome to My Web!!</h2>
+<p id="name"> haloo Akso!</p>
+<button onclick="start()">click here!</button>
+</div>
+
+<!-- LETTER -->
+<div id="letter">
+<div class="paper">
+<h3 style="text-align:center;">this message!</h3>
+
+<p>
+Hello Aksoo! <br><br>
+
+enakk gaa si cookies nya? hehehe semoga suka ya! <br><br>
+
+terima kasih ya telah menjalani kehidupan ini dengan sebaik mungkin...
+that's so amazing things! <br><br>
+ tentang hal apapun yang kamu lalui di masa lalu.. i hope itu di jadikan pelajaran hidup kamu yang bener bener yaa... so i want to tell kalau semisalnya didunia ini masih banyak hal baik yang mungkin menyenangkan! i never want judge book by the cover. <br><br> 
+ gada yang tau kehidupan kedepannya gimana, tapi berubahnya kehidupan di masa depan adalah hasil dari konsisten dan keputusan kecil kita di hari ini! gada yang ga mungkin di dunia ini ya!<br> <br> 
+ aku harap kamu selalu bijak dan sabar dalam mengalami hal yang mungkin memberatkan, tapi percaya deh selalu ada hujan setelah cerah, dan selalu ada cerah di setelah hujan! coba kamu liat cuaca hari ini, mungkin cerah, tapi dalam beberapa waktu ke depan, memangnya akan tetap cerah dan tidak hujan? sama hal nya dengan kehidupan.. <br><br> 
+ aku harap kamu ga pernah ngerasa buat "ga pantes" di kehidupan ini yaa.. mungkin ada beberapa hal yang ngehancurin kamu, cuman terkadang hal yang hancur itu mungkin memang ga baik buat di jalani, guru paling hebat dalam kehidupan adalah pengalaman, jangan pernah merasa tidak pantas, tapi selalu berusaha untuk menjadi seseorang yang lebih baik! <br></br>
+ jangan lupa cintai dirimu sendiri juga yaa, dalam kondisi apapun dirimu yang selalu tau bagaimana perasaanmu saat itu juga, waktu itu juga. Tetap berprasangka baik di kehidupan ini ya, tanpa sadar kita sering sekali takut kepada hal yang hanya terjadi dipikiran kita, namun nyatanya dunia ini tidak semenakutkan itu jika di jalani dengan kelapangan hati...<br><br>
+  One things again, mungkin tolong berubah jadi seseorang yang paling terbaik di hidupmu, bukan untuk aku, bukan untuk keluargamu, tapi untuk dirimu sendiri! selalu tebarkan banyak kebaikan yaa dan semangatt juga jangan lupaa, jaga kesehatan dan beristirahatlah dengan cukup! jangan lupa selalu mensyukuri haal sekecil apapun di hidup kita yaa! <br><br>
+   gausa berlarut-larut nyesel dengan kejadian di masa lalu, dan gausa habiskan pikiran untuk nakutin masa depan, sejatinya masalalu itu "masa yang sudah berlalu" baik buruknya hal itu semuanya sudah berlalu, <br><br> 
+   dan untuk masa depan itu adalah "masa yang akan datang" dan kedua masa itu bener-bener ga nyata kan? masa lalu udah berlalu dan masa depan hanya imajinasi pikiran tentang waktu yang akan datang, jadi kita hidup di masa sekarang, karena hanya di saat ini lah kita bisa mengambil keputusan untuk hidup kita di "masa depan"!! semangatttt teruss yaaaaa aku tau kamu bisa <p>
+- Meida Adya Anjarsari,  
+30 March 2026
+</p>
+
+</div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+<source src="Backstreet Boys - Shape Of My Heart (Official HD Video).mp3">
+</audio>
+
+<script>
+
+/* START */
+function start(){
+document.getElementById("welcome").style.display="none";
+
+/* PLAY MUSIC dari menit 01:50 */
+let music=document.getElementById("bgm");
+music.currentTime=150;
+music.volume=0;
+music.play();
+
+let fade=setInterval(()=>{
+if(music.volume<0.6){
+music.volume+=0.05;
+}else{
+clearInterval(fade);
+}
+},200);
+
+/* HEART ANIMATION */
+for(let i=0;i<25;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="🤍";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*5+4)+"s";
+document.body.appendChild(heart);
+}
+
+/* SHOW LETTER */
+setTimeout(()=>{
+document.getElementById("letter").classList.add("show");
+},2000);
+
+}
+</script>
+
+</body>
+</html>
